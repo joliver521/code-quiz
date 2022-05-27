@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Quiz</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <!-- Header/Nav Start -->
+    <nav>
+        <div>
+            <a type="button" id="score" onclick="showHighScores()">High Scores</a>
+            <a id="timer"></a>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main>
+        <!-- Quiz Challenge -->
+        <div>
+            <h1>Coding Quiz Game</h1>
+            <p>Try to answer all the questions in 50 seconds. Every wrong answer will deduct your time by 10 seconds</p>
+            <div id="button">
+                <button>Start Quiz</button>
+            </div>
+        </div>
+
+        <!-- Start Quiz Questions -->
+        <div>
+            <h2></h2>
+            <ul>
+                <li>
+                    <button type="button" class="btn questionBtn" id="one"></button>
+                </li>
+                <li>
+                    <button type="button" class="btn questionBtn" id="two"></button>
+                </li>
+                <li>
+                    <button type="button" class="btn questionBtn" id="three"></button>
+                </li>
+                <li>
+                    <button type="button" class="btn questionBtn" id="four"></button>
+                </li>
+                <li>
+                    <button type="button" class="btn questionBtn" id="five"></button>
+                </li>
+            </ul>
+            <!-- Correct/Wrong answer response -->
+            <div id="answerResponse"></div>
+        </div>
+
+        <!-- Final Score of the Game -->
+        <div>
+            <h2></h2>
+            <div></div>
+            <form action="">
+                <!-- Enter Initials -->
+                <div>
+                    <label for="text" id="initials"></label>
+                </div>
+            </form>
+        </div>
+    </main>
+
+</body>
+
+</html>
