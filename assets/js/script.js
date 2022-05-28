@@ -2,6 +2,7 @@
 let header = document.querySelector(".header");
 let score = document.getElementById("score");
 let submitBtn = document.getElementById("submitBtn");
+
 let quizHeader = document.getElementById("quizHeader");
 let option1 = document.getElementById("one");
 let option2 = document.getElementById("two");
@@ -9,8 +10,19 @@ let option3 = document.getElementById("three");
 let option4 = document.getElementById("four");
 let option5 = document.getElementById("five");
 let answerConfirm = document.getElementById("answerConfirm");
+
 let timer = document.getElementById("timer");
+
 let finalScore = document.getElementById("finalScore");
+let totalScore = document.getElementById("totalScore");
+let highScoreBtn = document.getElementById("highScoreBtn");
+
+let initials = document.getElementById("initials");
+let initialLog = document.getElementById("initialLog");
+let initialBtn = document.getElementById("initialBtn");
+
+let gameOver = document.getElementById("gameOver");
+let gameOverBtn = document.getElementById("form-inline");
 // Questions
 let questions = [
     {
@@ -110,6 +122,23 @@ let displayQuestions = () => {
     option5.setAttribute("data-answer", qDisplay.five);
 };
 
+displayQuestions();
+option1.addEventListener("click", function (event) {
+    testAnswer(event);
+});
+option2.addEventListener("click", function (event) {
+    testAnswer(event);
+});
+option3.addEventListener("click", function (event) {
+    testAnswer(event);
+});
+option4.addEventListener("click", function (event) {
+    testAnswer(event);
+});
+option5.addEventListener("click", function (event) {
+    testAnswer(event);
+});
+
 // Test to see if answer is correct
 let testAnswer = (event) => {
     event.preventDefault();
@@ -136,10 +165,60 @@ let testAnswer = (event) => {
     displayQuestions();
 };
 
+let gameOverScore = () => {
+    quizQuestions.style.display = "none";
+    highScoreBtn.style.display = "none";
+    finalScore.style.display = "block";
+    totalScore.style.display = "block";
+    initials.style.display = "block";
+    initialBtn.style.display = "block";
+    initialLog.style.display = "block";
+
+    totalScore.textContent = `Your total score is ${secondsLeft}`;
+    initialBtn.textContent = "Submit";
+    initials.textContent = `Enter Your Initials: `;
+};
+
+let leaderboard = [];
+
+
+let displayLeaderboard = () => {
+    header.style.display = "none";
+    gameOver.style.display = "none";
+    totalScore.style.display = "none";
+    initials.style.display = "none";
+    initialBtn.style.display = "none";
+    initialLog.style.display = "none";
+    highScoreBtn.style.display = "block";
+
+    let getInitials = document.getElementById("initialLog").value;
+
+    let leaderboard = JSON.parse(localStorage.getItem("highScore")) || [];
+
+    let localStorageIndex = { score: secondsLeft, initials: getInitials };
+    leaderboard.push(localStorageIndex)
+    localStorage.setItem("highScore", JSON.stringify(leaderboard));
+
+    let highScores = `${getInitials} : ${secondsLeft}`;
+}
 
 submitBtn.addEventListener("click", () => {
     quizStart();
     console.log("it's working");
+});
+
+score.addEventListener("click", function () {
+    displayLeaderboard();
+    console.log("Display Leaderboard");
+});
+
+initialBtn.addEventListener("click", function () {
+    displayLeaderboard();
+    console.log("Log Initials");
+});
+
+clearScore.addEventListener("click", function () {
+    localStorage.clear();
 });
 
 codeQuizGame();
