@@ -3,6 +3,7 @@ const header = document.querySelector(".header");
 const score = document.getElementById("score");
 const submitButton = document.getElementById("submitBtn");
 const timer = document.getElementById("timer");
+let finalScore = document.getElementById("finalScore");
 // Questions
 let questions = [
     {
@@ -47,7 +48,26 @@ let questions = [
         "correct": "2. String"
     },
 ];
-let questionsI = 0;
+
+let openingScore = 0;
+let qIndex = 0;
+
+// Start Quiz Game
+const codeQuizGame = () => {
+    quizOpen.style.display = "block";
+    header.style.display = "block";
+    quizQuestions.style.display = "none";
+    finalScore.style.display = "none";
+
+    let startScore = 0;
+    timer.textContent = `Time: ${openingScore}`;
+};
+
+// Global variable reset
+const variableReset = () => {
+    openingScore = 0;
+    qIndex = 0;
+}
 
 // start of quiz
 const quizStart = () => {
@@ -59,9 +79,10 @@ const quizStart = () => {
     let timerInterval = setInterval(function () {
         secondsLeft--;
         timer.textContent = "Time: " + secondsLeft;
-        if (secondsLeft === 0 || questions.length === questionsI) {
+        if (secondsLeft === 0 || questions.length === qIndex) {
             clearInterval(timerInterval);
             gameOverScore();
         }
     }, 1000);
-}
+};
+
