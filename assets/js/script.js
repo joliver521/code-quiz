@@ -1,7 +1,7 @@
 // global variables
 const header = document.querySelector(".header");
 const score = document.getElementById("score");
-const submitButton = document.getElementById("submitBtn");
+const submitBtn = document.getElementById("submitBtn");
 const timer = document.getElementById("timer");
 let finalScore = document.getElementById("finalScore");
 // Questions
@@ -85,4 +85,9 @@ const quizStart = () => {
         }
     }, 1000);
 };
+
+submitBtn.addEventListener("click", () => {
+    codeQuizGame();
+    console.log("start");
+});
 
