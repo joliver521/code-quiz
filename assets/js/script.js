@@ -1,8 +1,8 @@
 // global variables
-const header = document.querySelector(".header");
-const score = document.getElementById("score");
-const submitBtn = document.getElementById("submitBtn");
-const timer = document.getElementById("timer");
+let header = document.querySelector(".header");
+let score = document.getElementById("score");
+let submitBtn = document.getElementById("submitBtn");
+let timer = document.getElementById("timer");
 let finalScore = document.getElementById("finalScore");
 // Questions
 let questions = [
@@ -52,8 +52,8 @@ let questions = [
 let openingScore = 0;
 let qIndex = 0;
 
-// Start Quiz Game
-const codeQuizGame = () => {
+// Opening Page
+let codeQuizGame = () => {
     quizOpen.style.display = "block";
     header.style.display = "block";
     quizQuestions.style.display = "none";
@@ -64,13 +64,13 @@ const codeQuizGame = () => {
 };
 
 // Global variable reset
-const variableReset = () => {
+let variableReset = () => {
     openingScore = 0;
     qIndex = 0;
 }
 
 // start of quiz
-const quizStart = () => {
+let quizStart = () => {
     quizOpen.style.display = "none";
     quizQuestions.style.display = "block";
 
@@ -87,7 +87,9 @@ const quizStart = () => {
 };
 
 submitBtn.addEventListener("click", () => {
-    codeQuizGame();
+    quizStart();
     console.log("start");
 });
+
+codeQuizGame();
 
