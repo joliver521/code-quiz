@@ -2,7 +2,7 @@
 const header = document.querySelector(".header");
 const score = document.getElementById("score");
 const submitButton = document.getElementById("submitBtn");
-
+const timer = document.getElementById("timer");
 // Questions
 let questions = [
     {
@@ -46,6 +46,22 @@ let questions = [
         "Four": "4. Error",
         "correct": "2. String"
     },
+];
+let questionsI = 0;
 
+// start of quiz
+const quizStart = () => {
+    quizOpen.style.display = "none";
+    quizQuestions.style.display = "block";
 
-]
+    secondsLeft = 75;
+
+    let timerInterval = setInterval(function () {
+        secondsLeft--;
+        timer.textContent = "Time: " + secondsLeft;
+        if (secondsLeft === 0 || questions.length === questionsI) {
+            clearInterval(timerInterval);
+            gameOverScore();
+        }
+    }, 1000);
+}
