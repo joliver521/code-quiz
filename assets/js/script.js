@@ -1,7 +1,7 @@
 // global variables
 let header = document.querySelector(".header");
 let score = document.getElementById("score");
-let submitBtn = document.getElementById("submitBtn");
+let startBtn = document.getElementById("startBtn");
 
 let quizHeader = document.getElementById("quizHeader");
 let option1 = document.getElementById("one");
@@ -9,13 +9,16 @@ let option2 = document.getElementById("two");
 let option3 = document.getElementById("three");
 let option4 = document.getElementById("four");
 let option5 = document.getElementById("five");
+let correct = document.getElementById("correct");
 let answerConfirm = document.getElementById("answerConfirm");
 
-let timer = document.getElementById("timer");
-
-let finalScore = document.getElementById("finalScore");
 let totalScore = document.getElementById("totalScore");
+let quizQuestions = document.getElementById("quizQuestions");
+let questionBtn = document.getElementById("questionBtn");
+
 let highScoreBtn = document.getElementById("highScoreBtn");
+let quizOpen = document.getElementById("quizOpen");
+let finalScore = document.getElementById("finalScore");
 
 let initials = document.getElementById("initials");
 let initialLog = document.getElementById("initialLog");
@@ -23,6 +26,9 @@ let initialBtn = document.getElementById("initialBtn");
 
 let gameOver = document.getElementById("gameOver");
 let gameOverBtn = document.getElementById("form-inline");
+
+let timer = document.getElementById("timer");
+
 // Questions
 let questions = [
     {
@@ -77,8 +83,9 @@ let codeQuizGame = () => {
     header.style.display = "block";
     quizQuestions.style.display = "none";
     finalScore.style.display = "none";
+    highScores.style.display = "none";
 
-    let startScore = 0;
+    let openingScore = 0;
     timer.textContent = `Time: ${openingScore}`;
 };
 
@@ -86,16 +93,16 @@ let codeQuizGame = () => {
 let variableReset = () => {
     openingScore = 0;
     qIndex = 0;
-}
+};
 
 // start of quiz
-let quizStart = () => {
+let startQuiz = () => {
     quizOpen.style.display = "none";
     quizQuestions.style.display = "block";
 
     secondsLeft = 75;
 
-    let timerInterval = setInterval(function () {
+    let timerInterval = setInterval(() => {
         secondsLeft--;
         timer.textContent = "Time: " + secondsLeft;
         if (secondsLeft === 0 || questions.length === qIndex) {
@@ -123,19 +130,19 @@ let displayQuestions = () => {
 };
 
 displayQuestions();
-option1.addEventListener("click", function (event) {
+option1.addEventListener("click", (event) => {
     testAnswer(event);
 });
-option2.addEventListener("click", function (event) {
+option2.addEventListener("click", (event) => {
     testAnswer(event);
 });
-option3.addEventListener("click", function (event) {
+option3.addEventListener("click", (event) => {
     testAnswer(event);
 });
-option4.addEventListener("click", function (event) {
+option4.addEventListener("click", (event) => {
     testAnswer(event);
 });
-option5.addEventListener("click", function (event) {
+option5.addEventListener("click", (event) => {
     testAnswer(event);
 });
 
@@ -159,9 +166,10 @@ let testAnswer = (event) => {
         }
     }
     if (questions.length === qIndex + 1) {
+        gameOverScore();
         return;
     }
-    qIndex++
+    qIndex++;
     displayQuestions();
 };
 
@@ -173,6 +181,7 @@ let gameOverScore = () => {
     initials.style.display = "block";
     initialBtn.style.display = "block";
     initialLog.style.display = "block";
+    highScores.style.display = "block";
 
     totalScore.textContent = `Your total score is ${secondsLeft}`;
     initialBtn.textContent = "Submit";
@@ -202,23 +211,28 @@ let displayLeaderboard = () => {
     let highScores = `${getInitials} : ${secondsLeft}`;
 }
 
-submitBtn.addEventListener("click", () => {
-    quizStart();
+startBtn.addEventListener("click", () => {
+    startQuiz();
     console.log("it's working");
 });
 
-score.addEventListener("click", function () {
+score.addEventListener("click", () => {
     displayLeaderboard();
     console.log("Display Leaderboard");
 });
 
-initialBtn.addEventListener("click", function () {
+initialBtn.addEventListener("click", () => {
     displayLeaderboard();
     console.log("Log Initials");
 });
 
-clearScore.addEventListener("click", function () {
+clear.addEventListener("click", () => {
     localStorage.clear();
+    console.log("test");
+});
+
+back.addEventListener("click", () => {
+    codeQuizGame();
 });
 
 codeQuizGame();
