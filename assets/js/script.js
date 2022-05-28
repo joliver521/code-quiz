@@ -125,8 +125,6 @@ let displayQuestions = () => {
     option3.setAttribute("data-answer", qDisplay.three);
     option4.innerHTML = qDisplay.four;
     option4.setAttribute("data-answer", qDisplay.four);
-    option5.innerHTML = qDisplay.five;
-    option5.setAttribute("data-answer", qDisplay.five);
 };
 
 displayQuestions();
@@ -140,9 +138,6 @@ option3.addEventListener("click", (event) => {
     testAnswer(event);
 });
 option4.addEventListener("click", (event) => {
-    testAnswer(event);
-});
-option5.addEventListener("click", (event) => {
     testAnswer(event);
 });
 
