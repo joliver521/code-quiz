@@ -99,17 +99,47 @@ let displayQuestions = () => {
 
     quizHeader.innerHTML = qDisplay.quizHeader;
     option1.innerHTML = qDisplay.one;
+    option1.setAttribute("data-answer", qDisplay.one);
     option2.innerHTML = qDisplay.two;
+    option2.setAttribute("data-answer", qDisplay.two);
     option3.innerHTML = qDisplay.three;
+    option3.setAttribute("data-answer", qDisplay.three);
     option4.innerHTML = qDisplay.four;
+    option4.setAttribute("data-answer", qDisplay.four);
     option5.innerHTML = qDisplay.five;
+    option5.setAttribute("data-answer", qDisplay.five);
+};
 
+// Test to see if answer is correct
+let testAnswer = (event) => {
+    event.preventDefault();
 
-}
+    let answer = event.currentTarget.dataset.answer;
+    let rightAnswer = null;
+
+    if (questions[qIndex].correct === answer) {
+        rightAnswer = answer;
+    }
+    if (answer === rightAnswer) {
+        answerConfirm.textContent = "Correct!";
+    } else {
+        answerConfirm.textContent = "Wrong!";
+        secondsLeft -= 10
+        if (secondsLeft < 0) {
+            secondsLeft = 0;
+        }
+    }
+    if (questions.length === qIndex + 1) {
+        return;
+    }
+    qIndex++
+    displayQuestions();
+};
+
 
 submitBtn.addEventListener("click", () => {
     quizStart();
-    console.log("start");
+    console.log("it's working");
 });
 
 codeQuizGame();
