@@ -2,6 +2,13 @@
 let header = document.querySelector(".header");
 let score = document.getElementById("score");
 let submitBtn = document.getElementById("submitBtn");
+let quizHeader = document.getElementById("quizHeader");
+let option1 = document.getElementById("one");
+let option2 = document.getElementById("two");
+let option3 = document.getElementById("three");
+let option4 = document.getElementById("four");
+let option5 = document.getElementById("five");
+let answerConfirm = document.getElementById("answerConfirm");
 let timer = document.getElementById("timer");
 let finalScore = document.getElementById("finalScore");
 // Questions
@@ -11,7 +18,7 @@ let questions = [
         "one": "1. Client",
         "two": "2. Server",
         "three": "3. Both",
-        "Four": "4. None",
+        "four": "4. None",
         "correct": "3. Both"
     },
     {
@@ -19,7 +26,7 @@ let questions = [
         "one": "1. Global Variable",
         "two": "2. Local Variable",
         "three": "3. Both of the above",
-        "Four": "4. None of the above",
+        "four": "4. None of the above",
         "correct": "1. Global Variable"
     },
     {
@@ -27,7 +34,7 @@ let questions = [
         "one": "1. While()",
         "two": "2. Loop()",
         "three": "3. forEach()",
-        "Four": "4. None of the above",
+        "four": "4. None of the above",
         "correct": "3. forEach()"
     },
     {
@@ -35,7 +42,7 @@ let questions = [
         "one": "1. Let",
         "two": "2. Var",
         "three": "3. Int",
-        "Four": "4. Const",
+        "four": "4. Const",
         "correct": "3. Int"
     },
     {
@@ -44,7 +51,7 @@ let questions = [
         "one": "1. Abc",
         "two": "2. String",
         "three": "3. Undefined",
-        "Four": "4. Error",
+        "four": "4. Error",
         "correct": "2. String"
     },
 ];
@@ -85,6 +92,20 @@ let quizStart = () => {
         }
     }, 1000);
 };
+
+// Questions will show when this function runs
+let displayQuestions = () => {
+    let qDisplay = questions[qIndex];
+
+    quizHeader.innerHTML = qDisplay.quizHeader;
+    option1.innerHTML = qDisplay.one;
+    option2.innerHTML = qDisplay.two;
+    option3.innerHTML = qDisplay.three;
+    option4.innerHTML = qDisplay.four;
+    option5.innerHTML = qDisplay.five;
+
+
+}
 
 submitBtn.addEventListener("click", () => {
     quizStart();
