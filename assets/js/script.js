@@ -16,6 +16,7 @@ let totalScore = document.getElementById("totalScore");
 let quizQuestions = document.getElementById("quizQuestions");
 let questionBtn = document.getElementById("questionBtn");
 
+let highScoreList = document.getElementById("highScoreList");
 let highScoreBtn = document.getElementById("highScoreBtn");
 let quizOpen = document.getElementById("quizOpen");
 let finalScore = document.getElementById("finalScore");
@@ -27,6 +28,7 @@ let initialBtn = document.getElementById("initialBtn");
 let gameOver = document.getElementById("gameOver");
 let gameOverBtn = document.getElementById("form-inline");
 
+let timerInterval;
 let timer = document.getElementById("timer");
 
 // Questions
@@ -102,7 +104,7 @@ let startQuiz = () => {
 
     secondsLeft = 75;
 
-    let timerInterval = setInterval(() => {
+    timerInterval = setInterval(() => {
         secondsLeft--;
         timer.textContent = "Time: " + secondsLeft;
         if (secondsLeft === 0 || questions.length === qIndex) {
@@ -181,6 +183,7 @@ let gameOverScore = () => {
     totalScore.textContent = `Your total score is ${secondsLeft}`;
     initialBtn.textContent = "Submit";
     initials.textContent = `Enter Your Initials: `;
+    clearInterval(timerInterval);
 };
 
 let leaderboard = [];
@@ -203,7 +206,25 @@ let displayLeaderboard = () => {
     leaderboard.push(localStorageIndex)
     localStorage.setItem("highScore", JSON.stringify(leaderboard));
 
-    let highScores = `${getInitials} : ${secondsLeft}`;
+    // let highScores = `${getInitials} : ${secondsLeft}`;
+    populateLeaderboard();
+}
+
+let populateLeaderboard = () => {
+    //console.log('Populate!')
+    let scoreHistory = JSON.parse(localStorage.getItem("highScore"));
+    console.log(scoreHistory);
+    for (let i = 0; i < scoreHistory.length; i++) {
+
+        // Create Element and store in variable
+        let scoreEl = document.createElement("li");
+        // Give lelemnt content
+        scoreEl.textContent = `Initials: ${scoreHistory[i].initials}, Score: ${scoreHistory[i].score}`;
+        // Set any appropriate attributes (optional)
+
+        // Append element to page
+        highScoreList.append(scoreEl);
+    }
 }
 
 startBtn.addEventListener("click", () => {
