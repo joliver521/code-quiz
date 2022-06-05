@@ -213,7 +213,6 @@ let displayLeaderboard = () => {
 let populateLeaderboard = () => {
     //console.log('Populate!')
     let scoreHistory = JSON.parse(localStorage.getItem("highScore"));
-    console.log(scoreHistory);
     for (let i = 0; i < scoreHistory.length; i++) {
 
         // Create Element and store in variable
@@ -229,22 +228,18 @@ let populateLeaderboard = () => {
 
 startBtn.addEventListener("click", () => {
     startQuiz();
-    console.log("it's working");
 });
 
 score.addEventListener("click", () => {
     displayLeaderboard();
-    console.log("Display Leaderboard");
 });
 
 initialBtn.addEventListener("click", () => {
     displayLeaderboard();
-    console.log("Log Initials");
 });
 
 clear.addEventListener("click", () => {
     localStorage.clear();
-    console.log("test");
 });
 
 back.addEventListener("click", () => {
